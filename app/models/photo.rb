@@ -13,6 +13,9 @@
 #
 
 class Photo < ApplicationRecord
+  has_many :likes
+  has_many :comments
+  
   validates(:poster, { :presence => true })
 
   def poster
