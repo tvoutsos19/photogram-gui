@@ -134,12 +134,12 @@ class User < ApplicationRecord
   def feed
     array_of_photo_ids = Array.new
 
-    first_hop = self.leaders
+    my_leaders = self.leaders
     
-    first_hop.each do |a_user|
-      second_hop = a_user.own_photos
+    my_leaders.each do |a_user|
+      leader_own_photos = a_user.own_photos
 
-      second_hop.each do |a_photo|
+      leader_own_photos.each do |a_photo|
         array_of_photo_ids.push(a_photo.id)
       end
     end
@@ -150,12 +150,20 @@ class User < ApplicationRecord
   end
 
   def discover
-    array_of_leader_ids = self.accepted_sent_follow_requests.map_relation_to_array(:recipient_id)
+    array_of_photo_ids = Array.new
 
-    all_leader_likes = Like.where({ :fan_id => array_of_leader_ids })
+    my_leaders = self.leaders
+    
+    my_leaders.each do |a_user|
+      leader_liked_photos = a_user.liked_photos
 
-    array_of_discover_photo_ids = all_leader_likes.map_relation_to_array(:photo_id)
+      leader_liked_photos.each do |a_photo|
+        array_of_photo_ids.push(a_photo.id)
+      end
+    end
 
-    return Photo.where({ :id => array_of_discover_photo_ids })
+    matching_photos = Photo.where({ :id => array_of_photo_ids })
+
+    return matching_photos
   end
 end
