@@ -47,7 +47,7 @@ The required tasks are:
 
 ## Workflow
 
- 1. As often as you like, reset your database with dummy data: `rails sample_data`
+ 1. As often as you like, reset your database with sample data: `rails sample_data`
  2. Start the web server: `bin/server`
  3. **A**lways **B**e **C**ommitting at `/git`
  4. Check out your database visually at `/rails/db`

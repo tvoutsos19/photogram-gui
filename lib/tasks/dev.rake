@@ -1,4 +1,4 @@
-desc "Fill the database tables with some dummy data"
+desc "Fill the database tables with some sample data"
 task({ :sample_data => :environment}) do
   starting = Time.now
 
@@ -4226,6 +4226,6 @@ task({ :sample_data => :environment}) do
   elapsed = ending - starting
 
   puts "#{elapsed.to_i} seconds elapsed."
-  puts "Generated Dummy Data"
+  puts "Generated Sample Data"
 end
 
